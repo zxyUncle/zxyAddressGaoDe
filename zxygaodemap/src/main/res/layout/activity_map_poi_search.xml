@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:fitsSystemWindows="true"
+        android:background="#ffffff"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:fitsSystemWindows="true">
+
+        <com.google.android.material.appbar.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:fitsSystemWindows="true"
+                >
+
+            <androidx.appcompat.widget.Toolbar
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:contentInsetStart="0dp"
+                    app:layout_collapseMode="pin"
+                    app:layout_scrollFlags="scroll|enterAlways"
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+                <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    <ImageButton
+                            android:background="?android:attr/selectableItemBackgroundBorderless"
+                            android:layout_gravity="center"
+                            android:id="@+id/iv_search_map_poi_back"
+                            android:paddingRight="10dp"
+                            android:paddingLeft="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:button="@null"
+                            android:src="@mipmap/back"
+                            />
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="20dp"
+                            android:background="@drawable/shape_et_layer"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                        <EditText
+                                android:id="@+id/et_search_map_poi_search"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:background="@drawable/shape_et_noframe"
+                                android:hint="搜索"
+                                android:padding="10dp"
+                                android:textColor="#333333"
+                                android:textSize="16sp"/>
+
+                        <ImageView
+                                android:id="@+id/iv_search_map_poi_delete"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:button="@null"
+                                android:checked="false"
+                                android:padding="4dp"
+                                android:src="@mipmap/login_delete"
+                                android:visibility="gone"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <LinearLayout
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+            <!--正常搜索的数据-->
+            <com.scwang.smartrefresh.layout.SmartRefreshLayout
+                    android:id="@+id/srl_data_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_data_search"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                </androidx.recyclerview.widget.RecyclerView>
+            </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+            <!--推荐数据-->
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_data_recommend_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+            </androidx.recyclerview.widget.RecyclerView>
+        </LinearLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</LinearLayout>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+    <Button
+            android:onClick="onLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="定位"
+            />
+
+    <Button
+            android:onClick="onMap"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="地图"
+            />
+    <Button
+            android:onClick="onMapPOI"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="地图POI"
+            />
+    <Button
+            android:visibility="gone"
+            android:onClick="onRoutePlanning"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="路线规划"
+            />
+</LinearLayout>

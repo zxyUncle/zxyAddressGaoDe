@@ -1,0 +1,90 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.1"
+    defaultConfig {
+        applicationId "com.zxy.zxyaddressgaode"
+        minSdkVersion 23
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        //ARouter
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
+        ndk { //设置支持的SO库架构（开发者可以根据需要，选择一个或多个平台的so）
+            abiFilters "armeabi", "armeabi-v7a", "arm64-v8a", "x86", "arm64-v8a", "x86_64"
+        }
+    }
+    signingConfigs {
+
+        debug {
+            storeFile file("zxy.jks")
+            storePassword "android"
+            keyAlias "android"
+            keyPassword "android"
+        }
+
+        release {
+            storeFile file("zxy.jks")
+            storePassword "android"
+            keyAlias "android"
+            keyPassword "android"
+        }
+        // md5 726ec86cd3dcacdb312fea57c1d4f630
+    }
+    buildTypes {
+        release {
+            buildConfigField "boolean", "LOG_DEBUG", "false" //不显示log
+            minifyEnabled true //打开混淆
+            shrinkResources true //打开资源压缩。
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+        debug {
+            minifyEnabled false //关闭混淆
+            shrinkResources false //关闭资源压缩。
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.core:core-ktx:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    //zxy 高德地图SDK
+    implementation 'com.amap.api:location:latest.integration'//定位
+    implementation 'com.amap.api:search:latest.integration'//搜索
+    implementation 'com.amap.api:navi-3dmap:latest.integration'//导航
+//    implementation 'com.amap.api:3dmap:5.0.0'//   3D地图
+    implementation 'com.amap.api:map2d:latest.integration'// 2D地图
+
+    //zxy 工具依赖
+    implementation 'com.github.zxyUncle:tools:1.6.4'
+
+    //zxy 动态权限
+    implementation('com.github.hotchemi:permissionsdispatcher:3.1.0')
+    kapt 'com.github.hotchemi:permissionsdispatcher-processor:3.1.0'
+    implementation project(path: ':zxygaodemap')
+    //zxy Arouter路由做modelue之间的跳转
+    implementation 'com.alibaba:arouter-api:1.5.0'
+    kapt 'com.alibaba:arouter-compiler:1.2.2'
+}
