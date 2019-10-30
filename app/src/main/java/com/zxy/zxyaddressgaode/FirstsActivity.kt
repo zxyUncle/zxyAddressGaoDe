@@ -2,6 +2,8 @@ package com.zxy.zxyaddressgaode
 
 import android.os.Bundle
 import android.util.Log
+import android.os.Handler
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.alibaba.android.arouter.launcher.ARouter
@@ -23,6 +25,7 @@ class FirstsActivity : AppCompatActivity() {
     fun onMyIntent(view: View) {
         ARouter.getInstance().build(ARouterUtils.GAODE_MAIN).navigation()
         runOnUiThread { Log.e("123","123") }
+        Handler().postDelayed({Log.e("456","456")  }, 1000)
     }
 
 
